@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const PORT = process.env.PORT || 3003;
 
 const mongoose = require('mongoose')
@@ -21,6 +22,19 @@ mongoose.connect(MONGODB_URI, {
   });
 //middleware
 app.use(express.json());
+
+const whitelist = ['http://localhost:3000'];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) >= 0) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 
 //controllers
