@@ -6,8 +6,10 @@ const eventSchema = mongoose.Schema({
     location: String,
     description: String,
     image: String,
+    user_name: String,
+    date: { type: Date, default: Date.now},
 
-})
+});
 
 
 
