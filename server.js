@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3003;
 
-const mongoose = require('mongoose')
+
 
 // connections
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/events';
@@ -26,7 +27,7 @@ app.use(express.json());
 const whitelist = ['http://localhost:3000'];
 const corsOptions = {
   origin: (origin, callback) => {
-    console.log(origin)
+    console.log('origin',origin)
     if (whitelist.indexOf(origin) >= 0) {
       callback(null, true);
     } else {
