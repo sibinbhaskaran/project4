@@ -26,19 +26,19 @@ mongoose.connect(MONGODB_URI, {
 app.use(express.json());
 
 
-// const whitelist = ['http://localhost:3000', 'https://eventstoactivity.herokuapp.com/'];
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     console.log('origin',origin)
-//     if (whitelist.indexOf(origin) >= 0) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-// };
+const whitelist = ['http://localhost:3000', 'https://eventstoactivity.herokuapp.com'];
+const corsOptions = {
+  origin: (origin, callback) => {
+    console.log('origin',origin)
+    if (whitelist.indexOf(origin) >= 0) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 
 //controllers
