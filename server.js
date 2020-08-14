@@ -25,6 +25,7 @@ mongoose.connect(MONGODB_URI, {
 //middleware
 app.use(express.json());
 
+
 const whitelist = ['http://localhost:3000'];
 const corsOptions = {
   origin: (origin, callback) => {
