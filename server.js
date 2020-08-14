@@ -26,7 +26,7 @@ mongoose.connect(MONGODB_URI, {
 app.use(express.json());
 
 
-const whitelist = ['http://localhost:3000'];
+const whitelist = ['http://localhost:3000', 'https://eventstoactivity.herokuapp.com/'];
 const corsOptions = {
   origin: (origin, callback) => {
     console.log('origin',origin)
