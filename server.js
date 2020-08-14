@@ -23,6 +23,7 @@ mongoose.connect(MONGODB_URI, {
     console.log("connected to mongoose...");
   });
 //middleware
+app.use(express.static('public'));
 app.use(express.json());
 
 
