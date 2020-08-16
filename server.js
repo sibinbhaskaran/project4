@@ -50,9 +50,9 @@ app.use(cors(corsOptions));
 const eventsController = require('./controllers/events_controller.js')
 app.use('/events', eventsController)
 
-// //automatic delete post
+// //automatic delete user post every 12 evry 
 
-let deleteSch = new CronJob('5 * * * * *', function(){
+let deleteSch = new CronJob('0 */12 * * * *', function(){   // runs every 12 hour
   console.log("schedule initiated")
   return userDelete();
 });
@@ -60,16 +60,14 @@ deleteSch.start();
 
 
 userDelete = ()=>{
-  //  //let todayDate = new Date()
-  //  //todayDate.setHours(todayDate.getHours()-1)
-  // //todayDate.setMinutes(todayDate.getMinutes()-3)
- let todayDate = moment().subtract(1,"hour");
- console.log(todayDate + "first")
+ 
+ let todayDate = moment().subtract(1,'day');
+ 
  todayDate = moment.utc(todayDate).format();
  console.log(todayDate)
 
 
-   Event.deleteMany({ created_at: {$lte: todayDate}},
+   Event.deleteMany({ date : {$lte: todayDate}},
    
     (error)=>{
       if(error) return console.log("Failed to delete the suggestion" + error);
