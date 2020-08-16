@@ -5,6 +5,7 @@ const Event = require('../models/events.js')
 
 
 
+
 //index route
 
 events.get('/', (req,res) => {
@@ -48,6 +49,11 @@ events.delete('/:id', (req,res) => {
         res.status(200).json(deleteEvent)
     })
 })
+
+
+//automatic delete post
+
+
 
 
 

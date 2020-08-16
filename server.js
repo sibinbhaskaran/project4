@@ -5,6 +5,10 @@ const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3003;
 require("dotenv").config();
 
+// node cron
+const CronJob = require('cron').CronJob
+const Event = require('./models/events.js')
+const moment = require('moment')
 
 
 // connections
@@ -46,7 +50,42 @@ app.use(cors(corsOptions));
 const eventsController = require('./controllers/events_controller.js')
 app.use('/events', eventsController)
 
+// //automatic delete post
 
+let deleteSch = new CronJob('5 * * * * *', function(){
+  console.log("schedule initiated")
+  return userDelete();
+});
+deleteSch.start();
+
+
+userDelete = ()=>{
+  //  //let todayDate = new Date()
+  //  //todayDate.setHours(todayDate.getHours()-1)
+  // //todayDate.setMinutes(todayDate.getMinutes()-3)
+ let todayDate = moment().subtract(1,"hour");
+ console.log(todayDate + "first")
+ todayDate = moment.utc(todayDate).format();
+ console.log(todayDate)
+
+
+   Event.deleteMany({ created_at: {$lte: todayDate}},
+   
+    (error)=>{
+      if(error) return console.log("Failed to delete the suggestion" + error);
+      console.log("Deleted the suggestions")
+      
+    })
+}
+
+
+
+
+
+ 
+
+
+//
 
 
 
