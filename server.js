@@ -50,7 +50,7 @@ app.use(cors(corsOptions));
 const eventsController = require('./controllers/events_controller.js')
 app.use('/events', eventsController)
 
-// //automatic delete user post every 12 evry 
+// // delete user post
 
 let deleteSch = new CronJob('0 */12 * * * *', function(){   // runs every 12 hour
   console.log("schedule initiated")
@@ -61,7 +61,7 @@ deleteSch.start();
 
 userDelete = ()=>{
  
- let todayDate = moment().subtract(1,'day');
+ let todayDate = moment().subtract(1,'day'); // change later on the day
  
  todayDate = moment.utc(todayDate).format();
  console.log(todayDate)
