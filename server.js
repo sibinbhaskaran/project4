@@ -61,7 +61,7 @@ deleteSch.start();
 
 userDelete = ()=>{
  
- let todayDate = moment().subtract(1,'day'); // change later on the day
+ let todayDate = moment().subtract(15,'day'); // change later on the day
  
  todayDate = moment.utc(todayDate).format();
  console.log(todayDate)
