@@ -4,6 +4,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3003;
 require("dotenv").config();
+const axios = require('axios')
 
 // node cron
 const CronJob = require('cron').CronJob
@@ -75,15 +76,8 @@ userDelete = ()=>{
       
     })
 }
-
-
-
-
-
- 
-
-
 //
+
 
 
 
